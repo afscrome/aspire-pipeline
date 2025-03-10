@@ -13,9 +13,9 @@ var container = builder.AddContainer("sdk", "mcr.microsoft.com/dotnet/sdk")
     .WithArgs("-c", ReferenceExpression.Create($"sleep 1;curl {apiService.GetEndpoint("http").Property(EndpointProperty.Url)}/weatherforecast -v"))
     .WaitFor(apiService);
 
-// if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-// {
-//     container.WithContainerRuntimeArgs("--add-host=host.docker.internal:host-gateway");
-// }
+if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+{
+    container.WithContainerRuntimeArgs("--add-host=host.docker.internal:host-gateway");
+}
 
 builder.Build().Run();
