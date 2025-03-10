@@ -2,10 +2,7 @@ using System.Runtime.InteropServices;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiService = builder.AddProject<Projects.AspireInGithubActions_ApiService>("apiservice", "http")
-    .WithEndpoint("http", x => {
-        x.IsProxied = false;
-    });
+var apiService = builder.AddProject<Projects.AspireInGithubActions_ApiService>("apiservice", "http");
 
 var container = builder.AddContainer("sdk", "mcr.microsoft.com/dotnet/sdk")
     // work around https://github.com/dotnet/aspire/issues/7809#issuecomment-2688753611
